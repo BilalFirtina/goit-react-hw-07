@@ -26,7 +26,7 @@ const ContactList = () => {
           return <Contact key={contact.id} contact={contact} />;
         })
       ) : (
-        <p>itemler boş</p>
+        <h3 className={style.noContacts}>NO CONTACTS AVAILABLE</h3>
       )}
     </ul>
   );
