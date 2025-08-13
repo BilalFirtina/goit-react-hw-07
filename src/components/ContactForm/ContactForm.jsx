@@ -2,8 +2,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { nanoid } from "nanoid";
 import * as yup from "yup";
 import style from "./ContactForm.module.css";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../redux/contactsOps";
 
 function ContactForm() {
+  const dispatch = useDispatch();
   const nameId = nanoid();
   const numberId = nanoid();
   const initialValues = {
@@ -22,8 +25,18 @@ function ContactForm() {
       .max(25, "Name must be at most 3 characters")
       .required("Number is required"),
   });
+
+  const handleSubmit = (values, actions) => {
+    dispatch(addTask(values));
+    actions.resetForm();
+  };
+
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
       <Form className={style.form}>
         <label htmlFor={nameId}>Name</label>
         <Field id={nameId} name="name"></Field>

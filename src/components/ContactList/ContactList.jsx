@@ -2,7 +2,7 @@ import Contact from "../Contact/Contact";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./ContactList.module.css";
 import {
-  selectContacts,
+  selectVisibleContacts,
   selectError,
   selectLoading,
 } from "../../redux/contactsSlice";
@@ -14,7 +14,7 @@ const ContactList = () => {
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
-  const items = useSelector(selectContacts);
+  const items = useSelector(selectVisibleContacts);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   if (loading) return <p>Loading...</p>;
@@ -22,7 +22,7 @@ const ContactList = () => {
   return (
     <ul className={style.container}>
       {items.length > 0 ? (
-        items.map((contact) => {
+        [...items].reverse().map((contact) => {
           return <Contact key={contact.id} contact={contact} />;
         })
       ) : (
