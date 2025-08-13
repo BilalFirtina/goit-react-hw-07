@@ -1,0 +1,91 @@
+.card {
+  border: 1px solid black;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #8ef6e4;
+}
+.cardDiv {
+  display: flex;
+  flex-direction: column;
+}
+.span {
+  margin-right: 5px;
+}
+button {
+  background-color: #f8e5e7;
+}
+button:hover {
+  background-color: #f8bbc1;
+  border: 1px solid rgb(231, 113, 10);
+  color: rgb(189, 14, 14);
+}
+h1 {
+  display: flex;
+  gap: 5px;
+  font-size: 3rem;
+}
+
+h1 span {
+  display: inline-block;
+  animation: ripple 3s ease-in-out infinite, rainbow 5s linear infinite;
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    rgb(55, 55, 141),
+    rgb(134, 81, 172),
+    violet
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h1 span:nth-child(1) {
+  animation-delay: 0s;
+}
+h1 span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+h1 span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+h1 span:nth-child(4) {
+  animation-delay: 0.3s;
+}
+h1 span:nth-child(5) {
+  animation-delay: 0.4s;
+}
+h1 span:nth-child(6) {
+  animation-delay: 0.5s;
+}
+h1 span:nth-child(7) {
+  animation-delay: 0.6s;
+}
+h1 span:nth-child(8) {
+  animation-delay: 0.7s;
+}
+h1 span:nth-child(9) {
+  animation-delay: 0.8s;
+}
+
+@keyframes ripple {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    background-position: 0% 50%;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.2);
+    background-position: 100% 50%;
+  }
+}

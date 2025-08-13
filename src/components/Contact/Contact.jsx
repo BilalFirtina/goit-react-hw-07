@@ -8,13 +8,13 @@ const Contact = ({ contact }) => {
   const handleDelete = () => {};
   return (
     <li className={style.card}>
-      <div>
+      <div className={style.cardDiv}>
         <span>
-          <IoPerson />
+          <IoPerson className={style.span} />
           {contact.name}
         </span>
         <span>
-          <FaPhone />
+          <FaPhone className={style.span} />
           {contact.number}
         </span>
       </div>
