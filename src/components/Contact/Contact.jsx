@@ -2,12 +2,12 @@ import { IoPerson } from "react-icons/io5";
 import { FaPhone } from "react-icons/fa6";
 import style from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../../redux/contactsOps";
+import { deleteContact } from "../../redux/contactsOps";
 
 const Contact = ({ contact }) => {
   const dispatch = useDispatch();
   const handleDelete = (id) => {
-    dispatch(deleteTask(id));
+    dispatch(deleteContact(id));
   };
   return (
     <li className={style.card}>
