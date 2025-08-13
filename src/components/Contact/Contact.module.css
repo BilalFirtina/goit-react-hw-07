@@ -39,10 +39,10 @@ h1 span {
     red,
     orange,
     yellow,
-    green,
-    rgb(55, 55, 141),
+    rgb(66, 182, 66),
+    #8ef6e4,
     rgb(134, 81, 172),
-    violet
+    #f8bbc1
   );
   background-size: 400% 400%;
   -webkit-background-clip: text;

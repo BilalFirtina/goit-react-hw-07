@@ -1,41 +1,40 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "https://689a1f42fed141b96ba1f06d.mockapi.io/contacts";
+axios.defaults.baseURL = "https://689a1f42fed141b96ba1f06d.mockapi.io";
 
-const initialState = {
-  items: [],
-  loading: false,
-  error: null,
-};
-
-export const getAllContacts = createAsyncThunk(
-  "contacts/getAllContacts",
-  async () => {
-    const response = await axios.get(baseUrl);
-    console.log(response.data);
-    return response.data;
+export const fetchTasks = createAsyncThunk(
+  "contacts/fetchAll",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/contacts");
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
 );
 
-const contactsOps = createSlice({
-  name: "contactsOps",
-  initialState,
-  extraReducers: (builder) => {
-    builder
-      .addCase(getAllContacts.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getAllContacts.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.loading = false;
-      })
-      .addCase(getAllContacts.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
-  },
-});
+export const addTask = createAsyncThunk(
+  "contacts/addTask",
+  async ({ name, number }, thunkAPI) => {
+    try {
+      const response = await axios.post("/contacts", { name, number });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
-export default contactsOps.reducer;
+export const deleteTask = createAsyncThunk(
+  "contacts/deleteTask",
+  async (taskId, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/contacts/${taskId}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

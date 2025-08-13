@@ -1,17 +1,24 @@
-import { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllContacts } from "../../redux/contactsOps";
-import style from "./ContactList.module.css"
+import style from "./ContactList.module.css";
+import {
+  selectContacts,
+  selectError,
+  selectLoading,
+} from "../../redux/contactsSlice";
+import { useEffect } from "react";
+import { fetchTasks } from "../../redux/contactsOps";
 
 const ContactList = () => {
-  const items = useSelector((state) => state.operation.items);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllContacts());
+    dispatch(fetchTasks());
   }, [dispatch]);
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error:{error}</p>;
+  const items = useSelector(selectContacts);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error:{error}</p>;
   return (
     <ul className={style.container}>
       {items.length > 0 ? (
